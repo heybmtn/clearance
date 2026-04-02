@@ -407,7 +407,7 @@
 
     @media (max-width: 768px) {
       .hero .container { grid-template-columns: 1fr; }
-      .hero__photo { order: -1; }
+      .hero__photo { order: -1; width: 100%; }
     }
 
     .hero__photo {
@@ -419,8 +419,25 @@
       width: clamp(200px, 26vw, 340px);
       aspect-ratio: 3/4;
       object-fit: cover;
-      object-position: top;
+      object-position: top center;
       display: block;
+    }
+
+    /* Mobile: full width, fixed height so image looks intentional not squashed */
+    @media (max-width: 768px) {
+      .hero__photo img {
+        width: 100%;
+        aspect-ratio: unset;
+        height: 420px;
+        max-height: 55vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero__photo img {
+        height: 320px;
+        max-height: none;
+      }
     }
 
     .hero__photo::before {
@@ -1338,7 +1355,7 @@
 
       <div class="gallery__header reveal">
         <span class="eyebrow">Our Work</span>
-        <h2 class="section-title" id="gallery-heading">Before &amp; After</h2>
+        <h2 class="section-title" id="gallery-heading">On the Job</h2>
         <div class="divider" aria-hidden="true"></div>
         <p style="font-size: var(--small); color: var(--text-muted); max-width: 560px; line-height: 1.75;">
           Every clearance leaves a property clean, clear, and ready for its next chapter.
