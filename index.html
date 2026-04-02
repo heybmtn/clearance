@@ -394,6 +394,81 @@
       .hero__ctas .btn { width: 100%; }
     }
 
+
+    /* =====================================================
+       HERO PHOTO — two-column hero layout
+       ===================================================== */
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero .container { grid-template-columns: 1fr; }
+      .hero__photo { order: -1; }
+    }
+
+    .hero__photo {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .hero__photo img {
+      width: clamp(200px, 26vw, 340px);
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .hero__photo::before {
+      content: '';
+      position: absolute;
+      top: -10px; left: -10px;
+      width: 48px; height: 48px;
+      border-left: 2px solid var(--accent);
+      border-top: 2px solid var(--accent);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero__photo::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; right: -10px;
+      width: 48px; height: 48px;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero__photo-caption {
+      margin-top: 0.9rem;
+      text-align: center;
+    }
+
+    .hero__photo-caption strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero__photo-caption span {
+      display: block;
+      font-size: var(--label);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
     /* =====================================================
        TRUST BAR
        ===================================================== */
@@ -599,14 +674,7 @@
     }
 
     .about__inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2.5rem, 6vw, 5rem);
-      align-items: center;
-    }
-
-    @media (max-width: 768px) {
-      .about__inner { grid-template-columns: 1fr; }
+      max-width: 780px;
     }
 
     /* Owner photo placeholder */
@@ -1067,6 +1135,8 @@
        ===================================================== -->
   <section class="hero" aria-labelledby="hero-heading">
     <div class="container">
+
+      <!-- Left: headline, intro & CTAs -->
       <div class="hero__inner">
 
         <!-- Live bookings badge -->
@@ -1083,8 +1153,8 @@
 
         <p class="hero__lead">
           When a property needs clearing, you need someone who understands value — not just volume.
-          Henry Vaughan brings three decades of antiques expertise to every clearance,
-          treating your belongings with the knowledge and discretion they deserve.
+          Henry Vaughan is an antiques specialist and experienced house clearance expert,
+          personally overseeing every job with the knowledge and discretion it deserves.
         </p>
 
         <!-- Two CTAs: primary (scroll to form) + secondary (call now) -->
@@ -1105,6 +1175,22 @@
         </div>
 
       </div>
+
+      <!-- Right: Henry's photo — swap henry.png into place when supplied -->
+      <div class="hero__photo">
+        <img
+          src="henry.png"
+          alt="Henry Vaughan — Antiques specialist and founder of Cotswolds House Clearance"
+          width="340"
+          height="453"
+          loading="eager"
+        >
+        <div class="hero__photo-caption">
+          <strong>Henry Vaughan</strong>
+          <span>Antiques Specialist &amp; House Clearance Expert</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1320,16 +1406,6 @@
   <section class="about" id="about" aria-labelledby="about-heading">
     <div class="container">
       <div class="about__inner">
-
-        <!-- Owner photo: replace with <img> when supplied -->
-        <div class="reveal">
-          <div class="owner-photo-placeholder" role="img" aria-label="Add photo of Henry Vaughan">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
-              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
-            Add photo — Henry Vaughan
-          </div>
-        </div>
 
         <!-- About copy: two paragraphs, no area names -->
         <div class="about__content reveal">
